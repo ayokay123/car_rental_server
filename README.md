@@ -4,6 +4,8 @@
   <li>MySQL</li>
   <li>TypeOrm</li>
   <li>TypeScript</li>
+  <li>Jest</li>
+  <li>Swagger</li>
   <li>Docker</li>
   <li>Docker-compose</li>
 </ul>
