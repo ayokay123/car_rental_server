@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      # Only will build development stage from our dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+    env_file:
+    - .env
+    # Run a command against the development stage of the image
+    command: npm run start:dev
+    ports:
+      - 5000:5000
+  db:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    image: carrentaldb
+    container_name: CARRENTALDB
+    env_file:
+      - ./database/mysql.dev.env
+    ports:
+      - 42223:3306
+    volumes:
+      - ../database/.dbvolume:/var/lib/mysql
+      - ../database/.dbscripts:/docker-entrypoint-initdb.d
+    cap_add:
+      - SYS_NICE

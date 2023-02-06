@@ -1,0 +1,212 @@
+openapi: 3.0.0
+paths:
+  /api:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/car:
+    get:
+      operationId: CarController_getAllCars
+      summary: Get all cars
+      parameters: []
+      responses:
+        '200':
+          description: Get all cars
+      tags: &ref_0
+        - Car
+    post:
+      operationId: CarController_createCar
+      summary: Create car
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CarBodyDTO'
+      responses:
+        '200':
+          description: Create car
+      tags: *ref_0
+  /api/car/{id}:
+    get:
+      operationId: CarController_getCarById
+      summary: Get car by id
+      parameters: []
+      responses:
+        '200':
+          description: Get car by id
+      tags: *ref_0
+    put:
+      operationId: CarController_updateCar
+      summary: Update car
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '200':
+          description: Update car
+      tags: *ref_0
+    delete:
+      operationId: CarController_deleteCar
+      summary: Delete car
+      parameters: []
+      responses:
+        '200':
+          description: Delete car
+      tags: *ref_0
+  /api/location:
+    get:
+      operationId: LocationController_getAllLocations
+      summary: Get all locations
+      parameters: []
+      responses:
+        '200':
+          description: Get all locations
+      tags: &ref_1
+        - Location
+    post:
+      operationId: LocationController_createLocation
+      summary: Create location
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationBodyDTO'
+      responses:
+        '200':
+          description: Create location
+      tags: *ref_1
+  /api/location/{id}:
+    get:
+      operationId: LocationController_getLocationById
+      summary: Get location by id
+      parameters: []
+      responses:
+        '200':
+          description: Get location by id
+      tags: *ref_1
+    put:
+      operationId: LocationController_updateLocation
+      summary: Update location
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          description: Update location
+      tags: *ref_1
+    delete:
+      operationId: LocationController_deleteLocation
+      summary: Delete location
+      parameters: []
+      responses:
+        '200':
+          description: Delete location
+      tags: *ref_1
+info:
+  title: Car rental Management system
+  description: The NestJS API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: Car
+    description: ''
+servers: []
+components:
+  schemas:
+    CarBodyDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name
+        model:
+          type: string
+          description: model
+        color:
+          type: string
+          description: color
+        doors:
+          type: number
+          description: doors
+        year:
+          type: number
+          description: year
+        price:
+          type: number
+          description: price
+        air_condition:
+          type: boolean
+          description: air condition
+        file:
+          type: string
+          description: car image
+          format: binary
+      required:
+        - name
+        - model
+        - color
+        - doors
+        - year
+        - price
+        - air_condition
+    Car:
+      type: object
+      properties: {}
+    LocationBodyDTO:
+      type: object
+      properties:
+        lat:
+          type: number
+          description: latitude
+        lng:
+          type: number
+          description: longitude
+        lat_dms:
+          type: string
+          description: latitude dms
+        lng_dms:
+          type: string
+          description: longitude dms
+        address:
+          type: string
+          description: address
+        city:
+          type: string
+          description: city
+        state:
+          type: string
+          description: state
+        zip:
+          type: string
+          description: zip
+        country:
+          type: string
+          description: country
+      required:
+        - lat
+        - lng
+        - lat_dms
+        - lng_dms
+        - address
+        - city
+        - state
+        - zip
+        - country
+    Location:
+      type: object
+      properties: {}
